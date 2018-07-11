@@ -1,4 +1,4 @@
-package sample.spring.batch;
+package sample.spring.batch.example;
 
 import static org.junit.Assert.*;
 
@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration(locations = { "/module-context.xml" })
+@ContextConfiguration(locations = { "/module-context_example.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class SpringBatchStartTest {
+public class ExampleJobTest {
 
 	@Autowired
 	private JobLauncherTestUtils jobLauncherTestUtils;
@@ -41,10 +41,7 @@ public class SpringBatchStartTest {
 	public void testConnection() throws Exception {
 
 		BatchStatus status = jobLauncherTestUtils.launchJob().getStatus();
-
-		//		JobExecution jobExecution = jobLauncherTestUtils.launchJob().getStatus();
-
-		assertEquals("COMPLETED", status);
+		assertEquals(BatchStatus.COMPLETED, status);
 	}
 
 }
