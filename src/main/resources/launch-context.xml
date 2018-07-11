@@ -20,8 +20,4 @@
 
 	<batch:job-repository id="jobRepository" />
 
-	<import resource="classpath:/META-INF/spring/module-context.xml" />
-
-
-
 </beans>
