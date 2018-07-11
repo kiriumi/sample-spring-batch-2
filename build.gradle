@@ -21,6 +21,8 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version:'4.10'
     testCompile group: 'org.springframework', name: 'spring-test', version:'4.1.9.RELEASE'
+	testCompile group: 'org.springframework.batch', name: 'spring-batch-test', version: '3.0.9.RELEASE'
+
 
 	/* // サンプルプロジェクトの依存性
     compile group: 'org.springframework', name: 'spring-jdbc', version:'3.0.6.RELEASE'
