@@ -1,4 +1,4 @@
-package sample.spring.batch;
+package sample.spring.batch.example;
 
 import javax.sql.DataSource;
 

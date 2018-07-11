@@ -1,8 +1,7 @@
-package sample.spring.batch; 
-
-import sample.spring.batch.ExampleItemReader;
+package sample.spring.batch.example; 
 
 import junit.framework.TestCase;
+import sample.spring.batch.example.ExampleItemReader;
 
 public class ExampleItemReaderTests extends TestCase {
 

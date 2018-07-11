@@ -1,8 +1,7 @@
-package sample.spring.batch;
-
-import sample.spring.batch.ExampleItemWriter;
+package sample.spring.batch.example;
 
 import junit.framework.TestCase;
+import sample.spring.batch.example.ExampleItemWriter;
 
 public class ExampleItemWriterTests extends TestCase {
 
