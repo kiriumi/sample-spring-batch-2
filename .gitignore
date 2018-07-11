@@ -1,0 +1,50 @@
+################
+#  General
+################
+*.log
+
+################
+#  Java
+################
+*.class
+
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+
+################
+#  Eclipse
+################
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+
+################
+#  Maven
+################
+target/
+!/.mvn/wrapper/maven-wrapper.jar
+
+
+################
+#  Gradle
+################
+/.gradle/
+/build/
+!gradle-wrapper.jar
+
+
+################
+#  STS (Spring Tool Suite)
+################
+.springBeans
