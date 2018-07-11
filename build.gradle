@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'eclipse'
 apply plugin: 'maven'
 
 group = 'org.springframework.samples.batch'
@@ -12,7 +13,7 @@ targetCompatibility = 1.5
 
 
 repositories {
-        
+
      maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
