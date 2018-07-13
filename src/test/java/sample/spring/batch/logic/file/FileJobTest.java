@@ -27,8 +27,8 @@ public class FileJobTest {
 
 	private static final String ROOT_PATH = System.getProperty("user.dir");
 
-	private static final String OUTPUT_FILE = ROOT_PATH + "/src/test/resources/file/output_expected.csv";
-	private static final String EXPECTED_FILE = ROOT_PATH + "/file/output.csv";
+	private static final String OUTPUT_FILE = ROOT_PATH + "/src/test/resources/file/output.csv";
+	private static final String EXPECTED_FILE = ROOT_PATH + "/src/test/resources/file/output_expected.csv";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -51,8 +51,8 @@ public class FileJobTest {
 
 		JobParametersBuilder paramsBuilder = new JobParametersBuilder();
 
-		paramsBuilder.addString("inputFile", "/input.csv");
-		paramsBuilder.addString("outputFile", "/output.csv");
+		paramsBuilder.addString("inputFile", "./src/test/resources/file/input.csv");
+		paramsBuilder.addString("outputFile", "./src/test/resources/file/output.csv");
 
 		JobParameters params = paramsBuilder.toJobParameters();
 
