@@ -2,12 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
 	xsi:schemaLocation="
-	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-	<import resource="classpath:/launch-context_db.xml" />
+	<import resource="classpath:/launch-context.xml" />
 
-	<batch:job id="job">
+	<batch:job id="job1">
 		<batch:step id="step1">
 			<batch:tasklet transaction-manager="transactionManager"
 				start-limit="100">
@@ -17,14 +17,14 @@
 		</batch:step>
 	</batch:job>
 
-	<bean id="reader" class="org.mybatis.spring.batch.MyBatisPagingItemReader">
+	<bean id="reader" class="org.mybatis.spring.batch.MyBatisCursorItemReader">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-		<property name="queryId" value="selectSample" />
+		<property name="queryId" value="sample.spring.batch.db.custom.dao.Db1Mapper.selectSample1" />
 	</bean>
 
 	<bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-		<property name="statementId" value="insertSample" />
+		<property name="statementId" value="sample.spring.batch.db.custom.dao.Db2Mapper.insertSample1" />
 	</bean>
 
 </beans>
