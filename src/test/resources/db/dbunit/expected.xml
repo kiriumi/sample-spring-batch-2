@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<db2 id="1" name="あいうえ" />
+	<db2 id="1" name="一郎" />
+	<db2 id="1" name="太郎" />
 </dataset>
