@@ -18,9 +18,6 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FileJobTest extends SpringBatchTestSupport {
 
-	//	@Autowired
-	//	private JobLauncherTestUtils jobLauncherTestUtils;
-
 	private static final String INPUT_FILE = TEST_FILE_PATH + "input.csv";
 	private static final String OUTPUT_FILE = TEST_FILE_PATH + "output.csv";
 	private static final String EXPECTED_FILE = TEST_FILE_PATH + "output_expected.csv";

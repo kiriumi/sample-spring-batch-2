@@ -21,13 +21,8 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DbJobTest extends SpringBatchTestSupport {
 
-	//	@Autowired
-	//	private JobLauncherTestUtils jobLauncherTestUtils;
-
 	@Test
 	public void test() throws Exception {
-
-		Integer inttt = 1;
 
 		// テーブルに事前データ投入
 		IDataSet before = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "before.xml"));
