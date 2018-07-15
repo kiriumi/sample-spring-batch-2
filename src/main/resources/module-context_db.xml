@@ -20,6 +20,11 @@
 	<bean id="reader" class="org.mybatis.spring.batch.MyBatisCursorItemReader">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 		<property name="queryId" value="sample.spring.batch.db.custom.dao.Db1Mapper.selectSample1" />
+		<property name="parameterValues">
+	 		<map value-type="java.lang.Integer">
+	 			<entry key="id" value="1" />
+	 		</map>
+		</property>
 	</bean>
 
 	<bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter">

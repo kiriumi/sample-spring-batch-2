@@ -12,8 +12,6 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
-import org.springframework.batch.test.JobLauncherTestUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,18 +21,20 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DbJobTest extends SpringBatchTestSupport {
 
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
+	//	@Autowired
+	//	private JobLauncherTestUtils jobLauncherTestUtils;
 
 	@Test
 	public void test() throws Exception {
+
+		Integer inttt = 1;
 
 		// テーブルに事前データ投入
 		IDataSet before = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "before.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
 
 		// バッチ実行
-		BatchStatus status = jobLauncherTestUtils.launchJob().getStatus();
+		BatchStatus status = getJobLauncherTestUtils().launchJob().getStatus();
 		assertEquals(BatchStatus.COMPLETED, status);
 
 		// 期待値のテーブル情報を取得
@@ -49,7 +49,7 @@ public class DbJobTest extends SpringBatchTestSupport {
 		Assertion.assertEquals(expectedTable, actualTable);
 
 		// クリーン
-		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
+		//		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
 	}
 
 }
