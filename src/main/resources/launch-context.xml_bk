@@ -14,16 +14,10 @@
 
 	<context:component-scan base-package="sample.spring.batch" />
 
-	<!-- ジョブ起動時にジョブリポジトリを初期化しないよう、コメントアウト -->
-<!--  	<jdbc:initialize-database data-source="dataSource"> -->
-<!-- 		<jdbc:script location="${batch.schema.script}" /> -->
-<!-- 	</jdbc:initialize-database> -->
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="${batch.schema.script}" />
+	</jdbc:initialize-database>
 
 	<batch:job-repository id="jobRepository" />
-
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:sample/spring/batch/db/**/*.xml" />
-	</bean>
 
 </beans>
