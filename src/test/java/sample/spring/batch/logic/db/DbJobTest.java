@@ -21,13 +21,8 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DbJobTest extends SpringBatchTestSupport {
 
-	//	@Autowired
-	//	private JobLauncherTestUtils jobLauncherTestUtils;
-
 	@Test
 	public void test() throws Exception {
-
-		Integer inttt = 1;
 
 		// テーブルに事前データ投入
 		IDataSet before = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "before.xml"));
@@ -42,14 +37,14 @@ public class DbJobTest extends SpringBatchTestSupport {
 		ITable expectedTable = expected.getTable("db2");
 
 		// 実際の値のテーブル情報を取得
-		IDataSet databaseDataSet = getConnection().createDataSet();
-		ITable actualTable = databaseDataSet.getTable("db2");
+		IDataSet actual = getConnection().createDataSet();
+		ITable actualTable = actual.getTable("db2");
 
 		// 比較
 		Assertion.assertEquals(expectedTable, actualTable);
 
 		// クリーン
-		//		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
+		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
 	}
 
 }
