@@ -14,11 +14,9 @@
 
 	<context:component-scan base-package="sample.spring.batch" />
 
-	<!-- ジョブ起動時にジョブリポジトリを初期化しないよう、コメントアウト -->
-<!--  	<jdbc:initialize-database data-source="dataSource"> -->
-<!-- 		<jdbc:script location="${batch.schema.script}" /> -->
-<!-- 	</jdbc:initialize-database> -->
-
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="${batch.schema.script}" />
+	</jdbc:initialize-database>
 
 	<batch:job-repository id="jobRepository" />
 
