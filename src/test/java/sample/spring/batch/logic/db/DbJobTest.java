@@ -37,14 +37,14 @@ public class DbJobTest extends SpringBatchTestSupport {
 		ITable expectedTable = expected.getTable("db2");
 
 		// 実際の値のテーブル情報を取得
-		IDataSet databaseDataSet = getConnection().createDataSet();
-		ITable actualTable = databaseDataSet.getTable("db2");
+		IDataSet actual = getConnection().createDataSet();
+		ITable actualTable = actual.getTable("db2");
 
 		// 比較
 		Assertion.assertEquals(expectedTable, actualTable);
 
 		// クリーン
-		//		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
+		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
 	}
 
 }
