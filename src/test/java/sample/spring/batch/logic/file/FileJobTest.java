@@ -18,17 +18,16 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration(locations = { "/module-context_file.xml" })
+@ContextConfiguration(locations = { "/module-context_file.xml", "/test-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FileJobTest {
 
 	@Autowired
 	private JobLauncherTestUtils jobLauncherTestUtils;
 
-	private static final String ROOT_PATH = System.getProperty("user.dir");
-
-	private static final String OUTPUT_FILE = ROOT_PATH + "/src/test/resources/file/output.csv";
-	private static final String EXPECTED_FILE = ROOT_PATH + "/src/test/resources/file/output_expected.csv";
+	private static final String INPUT_FILE = "./src/test/resources/file/input.csv";
+	private static final String OUTPUT_FILE = "./src/test/resources/file/output.csv";
+	private static final String EXPECTED_FILE = "./src/test/resources/file/output_expected.csv";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -51,8 +50,8 @@ public class FileJobTest {
 
 		JobParametersBuilder paramsBuilder = new JobParametersBuilder();
 
-		paramsBuilder.addString("inputFile", "./src/test/resources/file/input.csv");
-		paramsBuilder.addString("outputFile", "./src/test/resources/file/output.csv");
+		paramsBuilder.addString("inputFile", INPUT_FILE);
+		paramsBuilder.addString("outputFile", OUTPUT_FILE);
 
 		JobParameters params = paramsBuilder.toJobParameters();
 
