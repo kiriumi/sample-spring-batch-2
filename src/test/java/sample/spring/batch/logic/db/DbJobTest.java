@@ -12,6 +12,10 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.test.JobLauncherTestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -21,6 +25,10 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DbJobTest extends SpringBatchTestSupport {
 
+	@Autowired
+	@Qualifier("job1")
+	private Job job;
+
 	@Test
 	public void test() throws Exception {
 
@@ -28,8 +36,12 @@ public class DbJobTest extends SpringBatchTestSupport {
 		IDataSet before = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "before.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
 
-		// バッチ実行
-		BatchStatus status = getJobLauncherTestUtils().launchJob().getStatus();
+		// ジョブ実行
+		JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
+		jobLauncehr.setJob(job);
+		BatchStatus status = jobLauncehr.launchJob().getStatus();
+
+		// ジョブの実行結果確認
 		assertEquals(BatchStatus.COMPLETED, status);
 
 		// 期待値のテーブル情報を取得
