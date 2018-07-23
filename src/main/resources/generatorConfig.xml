@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+
+	<properties resource="batch.properties" />
+
+	<context id="context_db1">
+		<jdbcConnection driverClass="${batch.jdbc.driver}"
+			connectionURL="${batch.jdbc.url}" userId="${batch.jdbc.user}"
+			password="${batch.jdbc.password}" />
+
+		<javaModelGenerator targetPackage="${mybatis.target.package.model}"
+			targetProject="${mybatis.target.project}" />
+
+		<sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
+			targetProject="${mybatis.target.project}" />
+
+		<javaClientGenerator targetPackage="${mybatis.target.package.client}"
+			targetProject="${mybatis.target.project}" type="XMLMAPPER" />
+
+		<table schema="${batch.schema}" tableName="db1" />
+	</context>
+
+	<context id="context_db2">
+		<jdbcConnection driverClass="${batch.jdbc.driver}"
+			connectionURL="${batch.jdbc.url}" userId="${batch.jdbc.user}"
+			password="${batch.jdbc.password}" />
+
+		<javaModelGenerator targetPackage="${mybatis.target.package.model}"
+			targetProject="${mybatis.target.project}" />
+
+		<sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
+			targetProject="${mybatis.target.project}" />
+
+		<javaClientGenerator targetPackage="${mybatis.target.package.client}"
+			targetProject="${mybatis.target.project}" type="XMLMAPPER" />
+
+		<table schema="${batch.schema}" tableName="db2" />
+	</context>
+
+</generatorConfiguration>
