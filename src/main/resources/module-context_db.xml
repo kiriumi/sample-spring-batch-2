@@ -5,6 +5,8 @@
 	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
+	<description>Mybatis IO Batch</description>
+
 	<import resource="classpath:/launch-context.xml" />
 
 	<batch:job id="job1">

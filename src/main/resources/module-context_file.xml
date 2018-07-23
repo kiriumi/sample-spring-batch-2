@@ -5,9 +5,7 @@
 	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-	<description>Example job to get you started. It provides a skeleton for
-		a typical batch application.
-	</description>
+	<description>FlatFile IO Batch</description>
 
 	<import resource="classpath:/launch-context.xml" />
 

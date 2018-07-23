@@ -18,10 +18,4 @@
 		</batch:step>
 	</batch:job>
 
-    <bean id="jobLauncherTestUtils" class="org.springframework.batch.test.JobLauncherTestUtils">
-        <property name="job" ref="job1" />
-        <property name="jobRepository" ref="jobRepository" />
-        <property name="jobLauncher" ref="jobLauncher" />
-    </bean>
-
 </beans>
