@@ -10,18 +10,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import sample.spring.batch.util.SpringBatchTestSupport;
+
 @ContextConfiguration(locations = { "/module-context_example.xml", "/test-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ExampleJobTest {
-
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
+public class ExampleJobTest extends SpringBatchTestSupport {
 
 	@Autowired
 	@Qualifier("job1")
@@ -35,10 +33,12 @@ public class ExampleJobTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 	}
 
+	@Override
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -46,8 +46,8 @@ public class ExampleJobTest {
 	@Test
 	public void testConnection() throws Exception {
 
-		jobLauncherTestUtils.setJob(job);
-		BatchStatus status = jobLauncherTestUtils.launchJob().getStatus();
+		getJobLauncherTestUtils().setJob(job);
+		BatchStatus status = getJobLauncherTestUtils().launchJob().getStatus();
 		assertEquals(BatchStatus.COMPLETED, status);
 	}
 

@@ -1,29 +1,26 @@
 package sample.spring.batch.util;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.sql.SQLException;
-
-import org.dbunit.DatabaseUnitException;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.DataSetException;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.springframework.batch.test.JobLauncherTestUtils;
+import org.springframework.batch.test.JobRepositoryTestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class SpringBatchTestSupport {
 
 	@Autowired
+	@Qualifier("jobLauncherTestUtils")
 	private JobLauncherTestUtils jobLauncherTestUtils;
+
+	@Autowired
+	@Qualifier("jobRepositoryTestUtils")
+	private JobRepositoryTestUtils jobRepositoryTestUtils;
 
 	protected static final String TEST_RESOURCES_PATH = "./src/test/resources/";
 	protected static final String TEST_FILE_PATH = TEST_RESOURCES_PATH + "file/";
@@ -43,20 +40,30 @@ public class SpringBatchTestSupport {
 
 	@Before
 	public void setUp() throws Exception {
-		clearJobRepository();
+
+		jobRepositoryTestUtils.removeJobExecutions();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		clearJobRepository();
+
 	}
 
 	/**
-	 * JobLauncherTestUtils を返却する
+	 * JobLauncherTestUtils を取得する
 	 * @return JobLauncherTestUtils
 	 */
 	protected JobLauncherTestUtils getJobLauncherTestUtils() {
 		return jobLauncherTestUtils;
+
+	}
+
+	/**
+	 * JobRepositoryTestUtils を取得する
+	 * @return JobLauncherTestUtils
+	 */
+	protected JobRepositoryTestUtils getJobRepositoryTestUtils() {
+		return jobRepositoryTestUtils;
 
 	}
 
@@ -75,6 +82,7 @@ public class SpringBatchTestSupport {
 	 * @throws Exception
 	 */
 	private static void setupConnection() throws ClassNotFoundException, Exception {
+
 		databaseTester = new JdbcDatabaseTester(
 				"org.postgresql.Driver",
 				"jdbc:postgresql://localhost:5432/spring_batch_db",
@@ -83,26 +91,6 @@ public class SpringBatchTestSupport {
 				"public");
 
 		connection = databaseTester.getConnection();
-	}
-
-	/**
-	 * ジョブリポジトリをクリアする
-	 * @throws MalformedURLException
-	 * @throws DataSetException
-	 * @throws DatabaseUnitException
-	 * @throws SQLException
-	 */
-	private void clearJobRepository()
-			throws MalformedURLException, DataSetException, DatabaseUnitException, SQLException {
-		// ジョブリポジトリをクリアする
-		IDataSet clearJobRepository = new FlatXmlDataSetBuilder()
-				.build(new File(DBUNIT_PATH + "clear-job-repository.xml"));
-		DatabaseOperation.DELETE_ALL.execute(connection, clearJobRepository);
-	}
-
-	@Test
-	public void testHoge() {
-		System.out.println("hoge");
 	}
 
 }
