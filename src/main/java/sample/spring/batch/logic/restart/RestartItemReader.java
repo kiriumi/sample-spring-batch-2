@@ -9,37 +9,37 @@ import sample.spring.batch.file.dto.Member;
 
 public class RestartItemReader extends FlatFileItemReader<Member> {
 
-	private final String KEY_OCCUR_EXCEPTION = "occuredException";
-	private static Boolean occurException = false;
+    private final String KEY_OCCUR_EXCEPTION = "occuredException";
+    private static Boolean occurException = false;
 
-	private int index = 0;
+    private int index = 0;
 
-	@BeforeStep
-	public void beforeStep(final StepExecution stepExecution) {
+    @BeforeStep
+    public void beforeStep(final StepExecution stepExecution) {
 
-		ExecutionContext context = stepExecution.getExecutionContext();
+        ExecutionContext context = stepExecution.getExecutionContext();
 
-		occurException = (Boolean) context.get(KEY_OCCUR_EXCEPTION);
+        occurException = (Boolean) context.get(KEY_OCCUR_EXCEPTION);
 
-		if (occurException == null || !occurException) {
-			occurException = true;
+        if (occurException == null || !occurException) {
+            occurException = true;
 
-		} else {
+        } else {
 
-			occurException = false;
-		}
+            occurException = false;
+        }
 
-		context.put(KEY_OCCUR_EXCEPTION, occurException);
-	}
+        context.put(KEY_OCCUR_EXCEPTION, occurException);
+    }
 
-	@Override
-	protected Member doRead() throws Exception {
+    @Override
+    protected Member doRead() throws Exception {
 
-		if (occurException && ++index == 3) {
-			throw new Exception("意図的な例外");
-		}
+        if (occurException && ++index == 3) {
+            throw new Exception("意図的な例外");
+        }
 
-		return super.doRead();
-	}
+        return super.doRead();
+    }
 
 }

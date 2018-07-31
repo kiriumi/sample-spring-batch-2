@@ -13,16 +13,16 @@ import org.springframework.stereotype.Component;
 @Component("writer")
 public class ExampleItemWriter implements ItemWriter<Object> {
 
-	private static final Log log = LogFactory.getLog(ExampleItemWriter.class);
+    private static final Log log = LogFactory.getLog(ExampleItemWriter.class);
 
-	/**
-	 * @see ItemWriter#write(java.util.List)
-	 */
-	@Override
-	public void write(List<? extends Object> data) throws Exception {
+    /**
+     * @see ItemWriter#write(java.util.List)
+     */
+    @Override
+    public void write(final List<? extends Object> data) throws Exception {
 
-		System.out.println("Writerの実行");
-		log.info(data);
-	}
+        System.out.println("Writerの実行");
+        log.info(data);
+    }
 
 }

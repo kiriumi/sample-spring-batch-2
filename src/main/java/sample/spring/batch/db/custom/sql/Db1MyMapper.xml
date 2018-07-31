@@ -3,11 +3,11 @@
 
 <mapper namespace="sample.spring.batch.db.custom.dao.Db1Mapper">
 
-	<select id="selectSample1" parameterType="sample.spring.batch.db.generator.dto.Db1"
-		resultMap="sample.spring.batch.db.generator.dao.Db1Mapper.BaseResultMap">
-		SELECT *
-		FROM public.db1
-		WHERE id = #{id};
-	</select>
+    <select id="selectSample1" parameterType="sample.spring.batch.db.generator.dto.Db1"
+        resultMap="sample.spring.batch.db.generator.dao.Db1Mapper.BaseResultMap">
+        SELECT *
+        FROM public.db1
+        WHERE id = #{id};
+    </select>
 
 </mapper>
