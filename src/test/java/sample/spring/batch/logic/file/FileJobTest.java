@@ -22,33 +22,33 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FileJobTest extends SpringBatchTestSupport {
 
-	private static final String INPUT_FILE = TEST_FILE_PATH + "input.csv";
-	private static final String OUTPUT_FILE = TEST_FILE_PATH + "output.csv";
-	private static final String EXPECTED_FILE = TEST_FILE_PATH + "output_expected.csv";
+    private static final String INPUT_FILE = TEST_FILE_PATH + "input.csv";
+    private static final String OUTPUT_FILE = TEST_FILE_PATH + "output.csv";
+    private static final String EXPECTED_FILE = TEST_FILE_PATH + "output_expected.csv";
 
-	@Autowired
-	@Qualifier("job1")
-	private Job job;
+    @Autowired
+    @Qualifier("job1")
+    private Job job;
 
-	@Test
-	public void test() throws Exception {
+    @Test
+    public void test() throws Exception {
 
-		// ジョブパラメータの設定
-		JobParametersBuilder paramsBuilder = new JobParametersBuilder();
-		paramsBuilder.addString("inputFile", INPUT_FILE);
-		paramsBuilder.addString("outputFile", OUTPUT_FILE);
-		JobParameters params = paramsBuilder.toJobParameters();
+        // ジョブパラメータの設定
+        JobParametersBuilder paramsBuilder = new JobParametersBuilder();
+        paramsBuilder.addString("inputFile", INPUT_FILE);
+        paramsBuilder.addString("outputFile", OUTPUT_FILE);
+        JobParameters params = paramsBuilder.toJobParameters();
 
-		// ジョブの開始
-		JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
-		jobLauncehr.setJob(job);
-		BatchStatus status = jobLauncehr.launchJob(params).getStatus();
+        // ジョブの開始
+        JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
+        jobLauncehr.setJob(job);
+        BatchStatus status = jobLauncehr.launchJob(params).getStatus();
 
-		// 結果確認
-		assertEquals(BatchStatus.COMPLETED, status);
+        // 結果確認
+        assertEquals(BatchStatus.COMPLETED, status);
 
-		AssertFile.assertFileEquals(new FileSystemResource(EXPECTED_FILE),
-				new FileSystemResource(OUTPUT_FILE));
-	}
+        AssertFile.assertFileEquals(new FileSystemResource(EXPECTED_FILE),
+                new FileSystemResource(OUTPUT_FILE));
+    }
 
 }
