@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -47,7 +48,9 @@ public class ExampleJobTest extends SpringBatchTestSupport {
 	public void testConnection() throws Exception {
 
 		getJobLauncherTestUtils().setJob(job);
-		BatchStatus status = getJobLauncherTestUtils().launchJob().getStatus();
+		JobExecution jobExecution = getJobLauncherTestUtils().launchJob();
+
+		BatchStatus status = jobExecution.getStatus();
 		assertEquals(BatchStatus.COMPLETED, status);
 	}
 

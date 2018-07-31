@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component("reader")
 public class ExampleItemReader implements ItemReader<String> {
 
-	private String[] input = { "Hello world!", null };
+	private final String[] input = { "Hello world!", null };
 
 	private int index = 0;
 
