@@ -3,40 +3,40 @@
 
 <generatorConfiguration>
 
-	<properties resource="batch.properties" />
+    <properties resource="batch.properties" />
 
-	<context id="context_db1">
-		<jdbcConnection driverClass="${batch.jdbc.driver}"
-			connectionURL="${batch.jdbc.url}" userId="${batch.jdbc.user}"
-			password="${batch.jdbc.password}" />
+    <context id="context_db1">
+        <jdbcConnection driverClass="${batch.jdbc.driver}"
+            connectionURL="${batch.jdbc.url}" userId="${batch.jdbc.user}"
+            password="${batch.jdbc.password}" />
 
-		<javaModelGenerator targetPackage="${mybatis.target.package.model}"
-			targetProject="${mybatis.target.project}" />
+        <javaModelGenerator targetPackage="${mybatis.target.package.model}"
+            targetProject="${mybatis.target.project}" />
 
-		<sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
-			targetProject="${mybatis.target.project}" />
+        <sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
+            targetProject="${mybatis.target.project}" />
 
-		<javaClientGenerator targetPackage="${mybatis.target.package.client}"
-			targetProject="${mybatis.target.project}" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="${mybatis.target.package.client}"
+            targetProject="${mybatis.target.project}" type="XMLMAPPER" />
 
-		<table schema="${batch.schema}" tableName="db1" />
-	</context>
+        <table schema="${batch.schema}" tableName="db1" />
+    </context>
 
-	<context id="context_db2">
-		<jdbcConnection driverClass="${batch.jdbc.driver}"
-			connectionURL="${batch.jdbc.url}" userId="${batch.jdbc.user}"
-			password="${batch.jdbc.password}" />
+    <context id="context_db2">
+        <jdbcConnection driverClass="${batch.jdbc.driver}"
+            connectionURL="${batch.jdbc.url}" userId="${batch.jdbc.user}"
+            password="${batch.jdbc.password}" />
 
-		<javaModelGenerator targetPackage="${mybatis.target.package.model}"
-			targetProject="${mybatis.target.project}" />
+        <javaModelGenerator targetPackage="${mybatis.target.package.model}"
+            targetProject="${mybatis.target.project}" />
 
-		<sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
-			targetProject="${mybatis.target.project}" />
+        <sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
+            targetProject="${mybatis.target.project}" />
 
-		<javaClientGenerator targetPackage="${mybatis.target.package.client}"
-			targetProject="${mybatis.target.project}" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="${mybatis.target.package.client}"
+            targetProject="${mybatis.target.project}" type="XMLMAPPER" />
 
-		<table schema="${batch.schema}" tableName="db2" />
-	</context>
+        <table schema="${batch.schema}" tableName="db2" />
+    </context>
 
 </generatorConfiguration>
