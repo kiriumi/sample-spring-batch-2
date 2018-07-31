@@ -14,83 +14,86 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public class SpringBatchTestSupport {
 
-	@Autowired
-	@Qualifier("jobLauncherTestUtils")
-	private JobLauncherTestUtils jobLauncherTestUtils;
+    @Autowired
+    @Qualifier("jobLauncherTestUtils")
+    private JobLauncherTestUtils jobLauncherTestUtils;
 
-	@Autowired
-	@Qualifier("jobRepositoryTestUtils")
-	private JobRepositoryTestUtils jobRepositoryTestUtils;
+    @Autowired
+    @Qualifier("jobRepositoryTestUtils")
+    private JobRepositoryTestUtils jobRepositoryTestUtils;
 
-	protected static final String TEST_RESOURCES_PATH = "./src/test/resources/";
-	protected static final String TEST_FILE_PATH = TEST_RESOURCES_PATH + "file/";
-	protected static final String DBUNIT_PATH = TEST_RESOURCES_PATH + "db/dbunit/";
+    protected static final String TEST_RESOURCES_PATH = "./src/test/resources/";
+    protected static final String TEST_FILE_PATH = TEST_RESOURCES_PATH + "file/";
+    protected static final String DBUNIT_PATH = TEST_RESOURCES_PATH + "db/dbunit/";
 
-	private static IDatabaseTester databaseTester;
-	private static IDatabaseConnection connection;
+    private static IDatabaseTester databaseTester;
+    private static IDatabaseConnection connection;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		setupConnection();
-	}
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+        setupConnection();
+    }
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
+    }
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
+        jobRepositoryTestUtils.removeJobExecutions();
+    }
 
-		jobRepositoryTestUtils.removeJobExecutions();
-	}
+    @After
+    public void tearDown() throws Exception {
 
-	@After
-	public void tearDown() throws Exception {
+    }
 
-	}
+    /**
+     * JobLauncherTestUtils を取得する
+     *
+     * @return JobLauncherTestUtils
+     */
+    protected JobLauncherTestUtils getJobLauncherTestUtils() {
+        return jobLauncherTestUtils;
 
-	/**
-	 * JobLauncherTestUtils を取得する
-	 * @return JobLauncherTestUtils
-	 */
-	protected JobLauncherTestUtils getJobLauncherTestUtils() {
-		return jobLauncherTestUtils;
+    }
 
-	}
+    /**
+     * JobRepositoryTestUtils を取得する
+     *
+     * @return JobLauncherTestUtils
+     */
+    protected JobRepositoryTestUtils getJobRepositoryTestUtils() {
+        return jobRepositoryTestUtils;
 
-	/**
-	 * JobRepositoryTestUtils を取得する
-	 * @return JobLauncherTestUtils
-	 */
-	protected JobRepositoryTestUtils getJobRepositoryTestUtils() {
-		return jobRepositoryTestUtils;
+    }
 
-	}
+    /**
+     * DB接続を取得する
+     *
+     * @return
+     */
+    protected IDatabaseConnection getConnection() {
+        return connection;
 
-	/**
-	 * DB接続を取得する
-	 * @return
-	 */
-	protected IDatabaseConnection getConnection() {
-		return connection;
+    }
 
-	}
+    /**
+     * DB接続を行う（DBUnit用）
+     *
+     * @throws ClassNotFoundException
+     * @throws Exception
+     */
+    private static void setupConnection() throws ClassNotFoundException, Exception {
 
-	/**
-	 * DB接続を行う（DBUnit用）
-	 * @throws ClassNotFoundException
-	 * @throws Exception
-	 */
-	private static void setupConnection() throws ClassNotFoundException, Exception {
+        databaseTester = new JdbcDatabaseTester(
+                "org.postgresql.Driver",
+                "jdbc:postgresql://localhost:5432/spring_batch_db",
+                "springrole",
+                "springrole",
+                "public");
 
-		databaseTester = new JdbcDatabaseTester(
-				"org.postgresql.Driver",
-				"jdbc:postgresql://localhost:5432/spring_batch_db",
-				"springrole",
-				"springrole",
-				"public");
-
-		connection = databaseTester.getConnection();
-	}
+        connection = databaseTester.getConnection();
+    }
 
 }

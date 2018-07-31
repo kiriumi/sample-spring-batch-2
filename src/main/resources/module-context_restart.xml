@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
     xsi:schemaLocation="
-    http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
-    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+  http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
     <description>FlatFile IO Batch</description>
 
@@ -14,13 +14,13 @@
             <batch:tasklet transaction-manager="transactionManager"
                 start-limit="100">
                 <batch:chunk reader="reader" writer="writer"
-                    commit-interval="1" />
+                    commit-interval="2" />
             </batch:tasklet>
         </batch:step>
     </batch:job>
 
     <!-- reader -->
-    <bean id="reader" class="org.springframework.batch.item.file.FlatFileItemReader"
+    <bean id="reader" class="sample.spring.batch.logic.restart.RestartItemReader"
         scope="step">
         <property name="resource" value="file:#{jobParameters[inputFile]}" />
         <property name="lineMapper">
@@ -32,8 +32,6 @@
                     </bean>
                 </property>
                 <property name="fieldSetMapper">
-                    <!-- <bean class="sample.spring.batch.file.mapper.MemberFieldSetMapper"
-                        /> -->
                     <bean
                         class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
                         <property name="targetType" value="sample.spring.batch.file.dto.Member" />

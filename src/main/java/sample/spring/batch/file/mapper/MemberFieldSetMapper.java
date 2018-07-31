@@ -8,14 +8,14 @@ import sample.spring.batch.file.dto.Member;
 
 public class MemberFieldSetMapper implements FieldSetMapper<Member> {
 
-	@Override
-	public Member mapFieldSet(FieldSet fieldSet) throws BindException {
-		Member member = new Member();
+    @Override
+    public Member mapFieldSet(final FieldSet fieldSet) throws BindException {
+        Member member = new Member();
 
-		member.setNum(fieldSet.readInt("num", 0));
-		member.setName(fieldSet.readString("name"));
+        member.setNum(fieldSet.readInt("num", 0));
+        member.setName(fieldSet.readString("name"));
 
-		return member;
-	}
+        return member;
+    }
 
 }

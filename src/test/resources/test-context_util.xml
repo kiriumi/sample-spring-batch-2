@@ -7,15 +7,9 @@
 
     <description>Application Context for Spring Batch Test</description>
 
-    <bean id="jobLauncherTestUtils" class="org.springframework.batch.test.JobLauncherTestUtils">
-        <property name="jobRepository" ref="jobRepository" />
-        <property name="jobLauncher" ref="jobLauncher" />
-    </bean>
+    <bean id="sampleMember" class="sample.spring.batch.file.dto.Member" />
 
-    <bean id="jobRepositoryTestUtils" class="org.springframework.batch.test.JobRepositoryTestUtils">
-        <property name="jobRepository" ref="jobRepository" />
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-
+    <bean id="appContext"
+        class="org.springframework.context.support.ClassPathXmlApplicationContext" />
 
 </beans>

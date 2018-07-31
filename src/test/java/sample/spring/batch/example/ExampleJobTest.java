@@ -22,36 +22,36 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ExampleJobTest extends SpringBatchTestSupport {
 
-	@Autowired
-	@Qualifier("job1")
-	private Job job;
+    @Autowired
+    @Qualifier("job1")
+    private Job job;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+    }
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
+    }
 
-	@Override
-	@Before
-	public void setUp() throws Exception {
-	}
+    @Override
+    @Before
+    public void setUp() throws Exception {
+    }
 
-	@Override
-	@After
-	public void tearDown() throws Exception {
-	}
+    @Override
+    @After
+    public void tearDown() throws Exception {
+    }
 
-	@Test
-	public void testConnection() throws Exception {
+    @Test
+    public void testConnection() throws Exception {
 
-		getJobLauncherTestUtils().setJob(job);
-		JobExecution jobExecution = getJobLauncherTestUtils().launchJob();
+        getJobLauncherTestUtils().setJob(job);
+        JobExecution jobExecution = getJobLauncherTestUtils().launchJob();
 
-		BatchStatus status = jobExecution.getStatus();
-		assertEquals(BatchStatus.COMPLETED, status);
-	}
+        BatchStatus status = jobExecution.getStatus();
+        assertEquals(BatchStatus.COMPLETED, status);
+    }
 
 }

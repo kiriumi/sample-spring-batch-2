@@ -3,17 +3,17 @@
 
 <mapper namespace="sample.spring.batch.db.custom.dao.Db2Mapper">
 
-	<insert id="insertSample1">
-		INSERT INTO public.db2 (id, name)
-		VALUES (#{id}, #{name})
-	</insert>
+    <insert id="insertSample1">
+        INSERT INTO public.db2 (id, name)
+        VALUES (#{id}, #{name})
+    </insert>
 
-	<update id="updateSample1" parameterType="sample.spring.batch.db.generator.dto.Db2">
-		UPDATE
-		public.db2
-		SET
-		name = #{name}
-		WHERE id = #{id}
-	</update>
+    <update id="updateSample1" parameterType="sample.spring.batch.db.generator.dto.Db2">
+        UPDATE
+        public.db2
+        SET
+        name = #{name}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

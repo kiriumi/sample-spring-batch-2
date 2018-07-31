@@ -25,38 +25,39 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DbJobTest extends SpringBatchTestSupport {
 
-	@Autowired
-	@Qualifier("job1")
-	private Job job;
+    @Autowired
+    @Qualifier("job1")
+    private Job job;
 
-	@Test
-	public void test() throws Exception {
+    @Test
+    public void test() throws Exception {
 
-		// テーブルに事前データ投入
-		IDataSet before = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "before.xml"));
-		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
+        // テーブルに事前データ投入
+        IDataSet before = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "before.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
 
-		// ジョブ実行
-		JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
-		jobLauncehr.setJob(job);
-		BatchStatus status = jobLauncehr.launchJob().getStatus();
+        // ジョブ実行
+        JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
+        jobLauncehr.setJob(job);
+        BatchStatus status = jobLauncehr.launchJob().getStatus();
 
-		// ジョブの実行結果確認
-		assertEquals(BatchStatus.COMPLETED, status);
+        // ジョブの実行結果確認
+        assertEquals(BatchStatus.COMPLETED, status);
 
-		// 期待値のテーブル情報を取得
-		IDataSet expected = new FlatXmlDataSetBuilder().build(new File(DBUNIT_PATH + "expected.xml"));
-		ITable expectedTable = expected.getTable("db2");
+        // 期待値のテーブル情報を取得
+        IDataSet expected = new FlatXmlDataSetBuilder()
+                .build(new File(DBUNIT_PATH + "expected.xml"));
+        ITable expectedTable = expected.getTable("db2");
 
-		// 実際の値のテーブル情報を取得
-		IDataSet actual = getConnection().createDataSet();
-		ITable actualTable = actual.getTable("db2");
+        // 実際の値のテーブル情報を取得
+        IDataSet actual = getConnection().createDataSet();
+        ITable actualTable = actual.getTable("db2");
 
-		// 比較
-		Assertion.assertEquals(expectedTable, actualTable);
+        // 比較
+        Assertion.assertEquals(expectedTable, actualTable);
 
-		// クリーン
-		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
-	}
+        // クリーン
+        DatabaseOperation.CLEAN_INSERT.execute(getConnection(), before);
+    }
 
 }
