@@ -11,13 +11,13 @@
             password="${batch.jdbc.password}" />
 
         <javaModelGenerator targetPackage="${mybatis.target.package.model}"
-            targetProject="${mybatis.target.project}" />
+            targetProject="${mybatis.target.project.java}" />
 
         <sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
-            targetProject="${mybatis.target.project}" />
+            targetProject="${mybatis.target.project.resources}" />
 
         <javaClientGenerator targetPackage="${mybatis.target.package.client}"
-            targetProject="${mybatis.target.project}" type="XMLMAPPER" />
+            targetProject="${mybatis.target.project.java}" type="XMLMAPPER" />
 
         <table schema="${batch.schema}" tableName="db1" />
     </context>
@@ -28,13 +28,13 @@
             password="${batch.jdbc.password}" />
 
         <javaModelGenerator targetPackage="${mybatis.target.package.model}"
-            targetProject="${mybatis.target.project}" />
+            targetProject="${mybatis.target.project.java}" />
 
         <sqlMapGenerator targetPackage="${mybatis.target.package.sqlmap}"
-            targetProject="${mybatis.target.project}" />
+            targetProject="${mybatis.target.project.resources}" />
 
         <javaClientGenerator targetPackage="${mybatis.target.package.client}"
-            targetProject="${mybatis.target.project}" type="XMLMAPPER" />
+            targetProject="${mybatis.target.project.java}" type="XMLMAPPER" />
 
         <table schema="${batch.schema}" tableName="db2" />
     </context>

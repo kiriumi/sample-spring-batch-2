@@ -4,11 +4,13 @@
     xmlns:batch="http://www.springframework.org/schema/batch"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
     xsi:schemaLocation="
         http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
     <context:property-placeholder
         location="classpath:batch.properties" />
@@ -17,17 +19,21 @@
         base-package="sample.spring.batch" />
 
     <!-- ジョブ起動時にジョブリポジトリを初期化しないよう、コメントアウト -->
-<!--     <jdbc:initialize-database -->
-<!--         data-source="dataSource"> -->
-<!--         <jdbc:script location="${batch.schema.script}" /> -->
-<!--     </jdbc:initialize-database> -->
+    <!-- <jdbc:initialize-database -->
+    <!-- data-source="dataSource"> -->
+    <!-- <jdbc:script location="${batch.schema.script}" /> -->
+    <!-- </jdbc:initialize-database> -->
 
     <batch:job-repository id="jobRepository" />
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <property name="dataSource" ref="dataSource" />
-    <property name="mapperLocations"
-        value="classpath*:sample/spring/batch/db/**/*.xml" />
+    <bean id="sqlSessionFactory"
+        class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations"
+            value="classpath*:sample/spring/batch/db/**/*Mapper.xml" />
     </bean>
+
+    <mybatis:scan
+        base-package="sample.spring.batch.db" />
 
 </beans>
