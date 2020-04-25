@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration>
-<Configuration status="DEBUG">
+<Configuration status="OFF">
 
     <Properties>
-        <Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %t %C %M %m%n</Property>
+        <Property name="pattern">%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-5p %C %m%n</Property>
         <Property name="logPath">./log</Property>
     </Properties>
 
@@ -16,8 +16,11 @@
             filePattern="${logPath}/%d{yyyyMM}/log4j2_%d{yyyyMMdd}_%i.log">
 
             <PatternLayout pattern="${pattern}" />
-            <DefaultRolloverStrategy max="10" />
+
+            <SizeBasedTriggeringPolicy size="20 MB" />
             <TimeBasedTriggeringPolicy />
+
+            <DefaultRolloverStrategy min="1" max="10" />
         </RollingFile>
 
         <RollingFile name="file-db"
@@ -35,13 +38,12 @@
     <Loggers>
         <Root level="ALL">
             <AppenderRef ref="console" />
-            <AppenderRef ref="file" />
         </Root>
-        <!-- <Logger name="org.hibernate.SQL" level="DEBUG"> -->
-        <!-- <AppenderRef ref="console" /> -->
-        <!-- <AppenderRef ref="file" /> -->
-        <!-- </Logger> -->
-        <Logger name="sample.spring.batch.db" level="DEBUG">
+        <Logger name="org.hibernate.SQL" level="INFO">
+            <AppenderRef ref="file" />
+        </Logger>
+        <Logger name="sample.spring.batch.db" level="TRACE"
+            additivity="false">
             <AppenderRef ref="file-db" />
         </Logger>
     </Loggers>
