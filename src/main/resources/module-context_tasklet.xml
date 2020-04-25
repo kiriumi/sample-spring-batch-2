@@ -16,6 +16,9 @@
                 start-limit="100" ref="tasklet" />
         </batch:step>
 
+        <batch:listeners>
+            <batch:listener ref="traceModeListener"/>
+        </batch:listeners>
     </batch:job>
 
     <bean id="tasklet"

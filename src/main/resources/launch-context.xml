@@ -38,6 +38,6 @@
             value="classpath*:sample/spring/batch/db/**/*Mapper.xml" />
     </bean>
 
-
+    <bean id="traceModeListener" class="sample.spring.batch.listener.TraceModeListener" scope="job"/>
 
 </beans>

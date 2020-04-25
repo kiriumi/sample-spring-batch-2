@@ -42,7 +42,7 @@
         <Logger name="org.hibernate.SQL" level="INFO">
             <AppenderRef ref="file" />
         </Logger>
-        <Logger name="sample.spring.batch.db" level="TRACE"
+        <Logger name="sample.spring.batch.db" level="INFO"
             additivity="false">
             <AppenderRef ref="file-db" />
         </Logger>
