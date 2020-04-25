@@ -8,7 +8,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sample.spring.batch.db.custom.sql.Db1MyMapper;
+import sample.spring.batch.db.custom.dao.Db1MyMapper;
 import sample.spring.batch.db.generator.dao.Db1Mapper;
 import sample.spring.batch.db.generator.dao.Db2Mapper;
 import sample.spring.batch.db.generator.dto.Db1;
@@ -33,12 +33,14 @@ public class SampleTasklet implements Tasklet {
 		List<Db1> inputs = db1Mapper.selectByExample(example);
 		Db1 input = inputs.get(0);
 
-		Db1 inputs2 = db1MyMapper.selectSample(input);
-
 		Db2 output = new Db2();
 		output.setId(input.getId());
 		output.setName(input.getName());
 		db2Mapper.insert(output);
+
+		// 独自Mapperを使った場合
+		Db1 inputs2 = db1MyMapper.selectSample(input);
+		Db1 inputs3 = db1MyMapper.selectSampleById(1);
 
 		return RepeatStatus.FINISHED;
 	}

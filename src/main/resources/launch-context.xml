@@ -12,11 +12,16 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
         http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
+    <!-- JavaクラスやBean定義ファイル内でプロパティファイル中の値にアクセスできるようになる -->
     <context:property-placeholder
         location="classpath:batch.properties" />
 
+    <!-- 指定のパッケージの中から、DI対象のクラスをDIコンテナに登録する -->
     <context:component-scan
-        base-package="sample.spring.batch" />
+        base-package="sample.spring.batch.example" />
+
+    <!-- 指定のパッケージの中から、MyBatisのMapperインターフェースをDIコンテナに登録する -->
+    <mybatis:scan base-package="sample.spring.batch.db" />
 
     <!-- ジョブ起動時にジョブリポジトリを初期化しないよう、コメントアウト -->
     <!-- <jdbc:initialize-database -->
@@ -33,7 +38,6 @@
             value="classpath*:sample/spring/batch/db/**/*Mapper.xml" />
     </bean>
 
-    <mybatis:scan
-        base-package="sample.spring.batch.db" />
+
 
 </beans>

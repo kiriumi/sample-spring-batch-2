@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="sample.spring.batch.db.custom.sql.Db1MyMapper">
+<mapper namespace="sample.spring.batch.db.custom.dao.Db1MyMapper">
 
     <select id="selectSample" parameterType="sample.spring.batch.db.generator.dto.Db1"
+        resultType="sample.spring.batch.db.generator.dto.Db1">
+        SELECT *
+        FROM public.db1
+        WHERE id = #{id};
+    </select>
+
+    <select id="selectSampleById" parameterType="java.lang.Integer"
         resultType="sample.spring.batch.db.generator.dto.Db1">
         SELECT *
         FROM public.db1

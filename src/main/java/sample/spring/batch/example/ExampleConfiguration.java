@@ -55,7 +55,6 @@ public class ExampleConfiguration {
 
 	@Bean
 	public PlatformTransactionManager transactionManager() {
-
 		return new DataSourceTransactionManager(dataSource());
 	}
 
