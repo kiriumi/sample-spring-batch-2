@@ -55,7 +55,6 @@ dependencies {
     testCompile group: 'org.dbunit', name: 'dbunit', version: '2.5.4'
 }
 
-
 jar {
     // resourcesではなくjavaの中に格納されているリソースをJarに含める
     into('/sample/spring/batch/db') {
