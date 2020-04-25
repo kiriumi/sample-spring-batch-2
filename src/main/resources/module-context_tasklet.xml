@@ -7,8 +7,10 @@
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
     <description>Tasklet MyBatsi Batch</description>
+    <!-- プログラムの引数：module-context_tasklet.xml job1 traceMode=1 -->
 
     <import resource="classpath:/launch-context.xml" />
+
 
     <batch:job id="job1">
         <batch:step id="step1">
@@ -17,7 +19,7 @@
         </batch:step>
 
         <batch:listeners>
-            <batch:listener ref="traceModeListener"/>
+            <batch:listener ref="traceModeListener" />
         </batch:listeners>
     </batch:job>
 

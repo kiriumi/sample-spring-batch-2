@@ -1,0 +1,18 @@
+2020/04/25 23:44:11.891 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: select id, name from public.db1 
+2020/04/25 23:44:11.911 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 
+2020/04/25 23:44:11.925 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/25 23:44:11.925 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/25 23:44:11.927 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/25 23:44:11.929 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: insert into public.db2 (id, name) values (?, ?) 
+2020/04/25 23:44:11.929 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer), 太郎(String)
+2020/04/25 23:44:11.932 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Updates: 1
+2020/04/25 23:44:11.933 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/25 23:44:11.934 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/25 23:44:11.935 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/25 23:44:11.935 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/25 23:44:11.937 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/25 23:44:11.938 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/25 23:44:11.938 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/25 23:44:11.939 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/25 23:44:11.940 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/25 23:44:11.940 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1

@@ -15,36 +15,33 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 public class RollbackableDbWriter extends MyBatisBatchItemWriter<T> {
 
-	private boolean isTest;
+    private boolean isTest;
 
-	@Value("#{jobParameters['testMode']}")
-	public String testMode;
+    @Value("#{jobParameters['testMode']}")
+    public String testMode;
 
-	@Autowired
-	public PlatformTransactionManager transactionManager;
+    @Autowired
+    public PlatformTransactionManager transactionManager;
 
-	@BeforeStep
-	public void setTest() throws SQLException {
-		this.isTest = testMode != null && testMode.equals("1") ? true : false;
-	}
+    @BeforeStep
+    public void setTest() throws SQLException {
+        this.isTest = testMode != null && testMode.equals("1") ? true : false;
+    }
 
-	@Override
-	public void write(final List<? extends T> items) {
+    @Override
+    public void write(final List<? extends T> items) {
 
-		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
-		//		definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW); // 参考：https://www.techscore.com/tech/Java/Others/Spring/6/
-		definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-		TransactionStatus status = transactionManager.getTransaction(definition);
+        DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
+        definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW); // 参考：https://www.techscore.com/tech/Java/Others/Spring/6/
+        TransactionStatus status = transactionManager.getTransaction(definition);
 
-		super.write(items);
+        super.write(items);
 
-		if (isTest) {
-			transactionManager.rollback(status);
-		} else {
-			transactionManager.commit(status);
-		}
-
-		System.out.println();
-	}
+        if (isTest) {
+            transactionManager.rollback(status);
+        } else {
+            transactionManager.commit(status);
+        }
+    }
 
 }

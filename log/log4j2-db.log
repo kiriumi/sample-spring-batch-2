@@ -1,0 +1,55 @@
+2020/04/26 00:11:08.043 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: select id, name from public.db1 
+2020/04/26 00:11:08.055 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 
+2020/04/26 00:11:08.062 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:11:08.063 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:11:08.063 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:11:08.065 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: insert into public.db2 (id, name) values (?, ?) 
+2020/04/26 00:11:08.065 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer), 太郎(String)
+2020/04/26 00:11:08.067 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Updates: 1
+2020/04/26 00:11:08.069 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/26 00:11:08.069 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/26 00:11:08.070 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:11:08.070 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:11:08.070 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:11:08.071 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/26 00:11:08.071 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/26 00:11:08.072 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:11:08.072 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:11:08.072 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:28:25.374 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: select id, name from public.db1 
+2020/04/26 00:28:25.392 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 
+2020/04/26 00:28:25.401 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:28:25.401 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:28:25.402 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:28:25.405 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: insert into public.db2 (id, name) values (?, ?) 
+2020/04/26 00:28:25.405 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer), 太郎(String)
+2020/04/26 00:28:25.407 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Updates: 1
+2020/04/26 00:28:25.408 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/26 00:28:25.408 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/26 00:28:25.409 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:28:25.409 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:28:25.410 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:28:25.411 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/26 00:28:25.411 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/26 00:28:25.412 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:28:25.412 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:28:25.413 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:31:50.901 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: select id, name from public.db1 
+2020/04/26 00:31:50.914 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 
+2020/04/26 00:31:50.925 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:31:50.925 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:31:50.926 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 2, 花子
+2020/04/26 00:31:50.926 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 2
+2020/04/26 00:31:50.928 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: insert into public.db2 (id, name) values (?, ?) 
+2020/04/26 00:31:50.929 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer), 太郎(String)
+2020/04/26 00:31:50.930 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Updates: 1
+2020/04/26 00:31:50.931 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/26 00:31:50.931 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/26 00:31:50.932 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:31:50.932 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:31:50.933 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1
+2020/04/26 00:31:50.934 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==>  Preparing: SELECT * FROM public.db1 WHERE id = ?; 
+2020/04/26 00:31:50.934 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger ==> Parameters: 1(Integer)
+2020/04/26 00:31:50.935 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==    Columns: id, name
+2020/04/26 00:31:50.935 [main] TRACE org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==        Row: 1, 太郎
+2020/04/26 00:31:50.935 [main] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger <==      Total: 1

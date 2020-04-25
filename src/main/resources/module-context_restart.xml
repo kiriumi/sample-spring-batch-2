@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
     xsi:schemaLocation="
   http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
@@ -20,11 +21,14 @@
     </batch:job>
 
     <!-- reader -->
-    <bean id="reader" class="sample.spring.batch.logic.restart.RestartItemReader"
+    <bean id="reader"
+        class="sample.spring.batch.logic.restart.RestartItemReader"
         scope="step">
-        <property name="resource" value="file:#{jobParameters[inputFile]}" />
+        <property name="resource"
+            value="file:#{jobParameters[inputFile]}" />
         <property name="lineMapper">
-            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+            <bean
+                class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
                 <property name="lineTokenizer">
                     <bean
                         class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
@@ -34,7 +38,8 @@
                 <property name="fieldSetMapper">
                     <bean
                         class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
-                        <property name="targetType" value="sample.spring.batch.file.dto.Member" />
+                        <property name="targetType"
+                            value="sample.spring.batch.file.dto.Member" />
                     </bean>
                 </property>
             </bean>
@@ -42,9 +47,11 @@
     </bean>
 
     <!-- writer -->
-    <bean id="writer" class="org.springframework.batch.item.file.FlatFileItemWriter"
+    <bean id="writer"
+        class="org.springframework.batch.item.file.FlatFileItemWriter"
         scope="step">
-        <property name="resource" value="file:#{jobParameters[outputFile]}" />
+        <property name="resource"
+            value="file:#{jobParameters[outputFile]}" />
         <property name="lineAggregator">
             <bean
                 class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">

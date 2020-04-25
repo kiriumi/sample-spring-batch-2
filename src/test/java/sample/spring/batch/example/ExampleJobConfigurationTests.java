@@ -15,20 +15,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ExampleJobConfigurationTests {
 
-	@Autowired
-	private JobLauncher jobLauncher;
+    @Autowired
+    private JobLauncher jobLauncher;
 
-	@Autowired
-	private Job job;
+    @Autowired
+    private Job job;
 
-	@Test
-	public void testSimpleProperties() throws Exception {
-		assertNotNull(jobLauncher);
-	}
+    @Test
+    public void testSimpleProperties() throws Exception {
+        assertNotNull(jobLauncher);
+    }
 
-	@Test
-	public void testLaunchJob() throws Exception {
-		jobLauncher.run(job, new JobParameters());
-	}
+    @Test
+    public void testLaunchJob() throws Exception {
+        jobLauncher.run(job, new JobParameters());
+    }
 
 }

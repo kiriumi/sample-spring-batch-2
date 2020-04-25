@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
     xsi:schemaLocation="
     http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
     <description>Mybatis IO Batch</description>
+    <!-- プログラムの引数：module-context_db.xml job1 testMode=0 -->
 
     <import resource="classpath:/launch-context.xml" />
 
@@ -20,10 +22,11 @@
 
     </batch:job>
 
-    <bean id="reader" class="org.mybatis.spring.batch.MyBatisCursorItemReader" scope="step">
+    <bean id="reader"
+        class="org.mybatis.spring.batch.MyBatisCursorItemReader" scope="step">
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="queryId"
-            value="sample.spring.batch.db.custom.dao.Db1Mapper.selectSample1" />
+            value="sample.spring.batch.db.custom.dao.Db1MyMapper.selectSample" />
         <property name="parameterValues">
             <map value-type="java.lang.Integer">
                 <entry key="id" value="1" />
@@ -31,11 +34,12 @@
         </property>
     </bean>
 
-<!--     <bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter"> -->
-    <bean id="writer" class="sample.spring.batch.db.RollbackableDbWriter" scope="step">
+    <!-- <bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter"> -->
+    <bean id="writer"
+        class="sample.spring.batch.db.RollbackableDbWriter" scope="step">
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="statementId"
-            value="sample.spring.batch.db.custom.dao.Db2Mapper.insertSample1" />
+            value="sample.spring.batch.db.generator.dao.Db2Mapper.insert" />
     </bean>
 
 </beans>

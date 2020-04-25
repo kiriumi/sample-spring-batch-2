@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
     xsi:schemaLocation="
     http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
     <description>FlatFile IO Batch</description>
+    <!-- プログラムの引数： module-context_file.xml job1 testMode=0 inputFile=./misc/file/input.csv
+        outputFile=./misc/file/output.csv -->
 
     <import resource="classpath:/launch-context.xml" />
 
@@ -19,12 +22,14 @@
         </batch:step>
     </batch:job>
 
-    <!-- reader -->
-    <bean id="reader" class="org.springframework.batch.item.file.FlatFileItemReader"
+    <bean id="reader"
+        class="org.springframework.batch.item.file.FlatFileItemReader"
         scope="step">
-        <property name="resource" value="file:#{jobParameters[inputFile]}" />
+        <property name="resource"
+            value="file:#{jobParameters[inputFile]}" />
         <property name="lineMapper">
-            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+            <bean
+                class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
                 <property name="lineTokenizer">
                     <bean
                         class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
@@ -36,18 +41,19 @@
                         /> -->
                     <bean
                         class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
-                        <property name="targetType" value="sample.spring.batch.file.dto.Member" />
+                        <property name="targetType"
+                            value="sample.spring.batch.file.dto.Member" />
                     </bean>
                 </property>
             </bean>
         </property>
     </bean>
 
-    <!-- writer -->
-<!--     <bean id="writer" class="org.springframework.batch.item.file.FlatFileItemWriter" -->
-    <bean id="writer" class="sample.spring.batch.file.RollbackableFileWriter"
-        scope="step">
-        <property name="resource" value="file:#{jobParameters[outputFile]}" />
+    <!-- <bean id="writer" class="org.springframework.batch.item.file.FlatFileItemWriter" -->
+    <bean id="writer"
+        class="sample.spring.batch.file.RollbackableFileWriter" scope="step">
+        <property name="resource"
+            value="file:#{jobParameters[outputFile]}" />
         <property name="lineAggregator">
             <bean
                 class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">

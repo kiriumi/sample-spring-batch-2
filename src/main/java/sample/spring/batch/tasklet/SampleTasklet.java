@@ -17,32 +17,32 @@ import sample.spring.batch.db.generator.dto.Db2;
 
 public class SampleTasklet implements Tasklet {
 
-	@Autowired
-	Db1Mapper db1Mapper;
+    @Autowired
+    Db1Mapper db1Mapper;
 
-	@Autowired
-	Db2Mapper db2Mapper;
+    @Autowired
+    Db2Mapper db2Mapper;
 
-	@Autowired
-	Db1MyMapper db1MyMapper;
+    @Autowired
+    Db1MyMapper db1MyMapper;
 
-	@Override
-	public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
+    @Override
+    public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
-		Db1Example example = new Db1Example();
-		List<Db1> inputs = db1Mapper.selectByExample(example);
-		Db1 input = inputs.get(0);
+        Db1Example example = new Db1Example();
+        List<Db1> inputs = db1Mapper.selectByExample(example);
+        Db1 input = inputs.get(0);
 
-		Db2 output = new Db2();
-		output.setId(input.getId());
-		output.setName(input.getName());
-		db2Mapper.insert(output);
+        Db2 output = new Db2();
+        output.setId(input.getId());
+        output.setName(input.getName());
+        db2Mapper.insert(output);
 
-		// 独自Mapperを使った場合
-		Db1 inputs2 = db1MyMapper.selectSample(input);
-		Db1 inputs3 = db1MyMapper.selectSampleById(1);
+        // 独自Mapperを使った場合
+        Db1 inputs2 = db1MyMapper.selectSample(input);
+        Db1 inputs3 = db1MyMapper.selectSampleById(1);
 
-		return RepeatStatus.FINISHED;
-	}
+        return RepeatStatus.FINISHED;
+    }
 
 }

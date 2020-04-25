@@ -10,28 +10,28 @@ import org.springframework.batch.core.JobExecutionListener;
 
 public class TraceModeListener implements JobExecutionListener {
 
-	@Override
-	public void beforeJob(final JobExecution jobExecution) {
+    @Override
+    public void beforeJob(final JobExecution jobExecution) {
 
-		String traceMode = jobExecution.getJobParameters().getString("traceMode");
+        String traceMode = jobExecution.getJobParameters().getString("traceMode");
 
-		if (traceMode != null && traceMode.equals("1")) {
-			changeLogLevel("sample.spring.batch.db", Level.TRACE);
-		}
-	}
+        if (traceMode != null && traceMode.equals("1")) {
+            changeLogLevel("sample.spring.batch.db", Level.TRACE);
+        }
+    }
 
-	@Override
-	public void afterJob(final JobExecution jobExecution) {
-	}
+    @Override
+    public void afterJob(final JobExecution jobExecution) {
+    }
 
-	private void changeLogLevel(final String loggerName, final Level logLevel) {
+    private void changeLogLevel(final String loggerName, final Level logLevel) {
 
-		LoggerContext loggerContext = (LoggerContext) LogManager.getContext(false);
-		Configuration configuration = loggerContext.getConfiguration();
-		LoggerConfig loggerConfig = configuration.getLoggerConfig(loggerName);
+        LoggerContext loggerContext = (LoggerContext) LogManager.getContext(false);
+        Configuration configuration = loggerContext.getConfiguration();
+        LoggerConfig loggerConfig = configuration.getLoggerConfig(loggerName);
 
-		loggerConfig.setLevel(Level.TRACE);
-		loggerContext.updateLoggers();
-	}
+        loggerConfig.setLevel(Level.TRACE);
+        loggerContext.updateLoggers();
+    }
 
 }

@@ -22,40 +22,40 @@ import sample.spring.batch.util.SpringBatchTestSupport;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RestartJobTest extends SpringBatchTestSupport {
 
-	private static final String INPUT_FILE = TEST_FILE_PATH + "input.csv";
-	private static final String OUTPUT_FILE = TEST_FILE_PATH + "output.csv";
+    private static final String INPUT_FILE = TEST_FILE_PATH + "input.csv";
+    private static final String OUTPUT_FILE = TEST_FILE_PATH + "output.csv";
 
-	@Autowired
-	@Qualifier("job1")
-	private Job job;
+    @Autowired
+    @Qualifier("job1")
+    private Job job;
 
-	@Autowired
-	private JobLauncher restartJobLauncher;
+    @Autowired
+    private JobLauncher restartJobLauncher;
 
-	@Test
-	public void test() throws Exception {
+    @Test
+    public void test() throws Exception {
 
-		// ジョブパラメータの設定
-		JobParametersBuilder paramsBuilder = new JobParametersBuilder();
-		paramsBuilder.addString("inputFile", INPUT_FILE);
-		paramsBuilder.addString("outputFile", OUTPUT_FILE);
-		JobParameters params = paramsBuilder.toJobParameters();
+        // ジョブパラメータの設定
+        JobParametersBuilder paramsBuilder = new JobParametersBuilder();
+        paramsBuilder.addString("inputFile", INPUT_FILE);
+        paramsBuilder.addString("outputFile", OUTPUT_FILE);
+        JobParameters params = paramsBuilder.toJobParameters();
 
-		// ジョブの開始
-		JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
-		jobLauncehr.setJob(job);
-		JobExecution jobExecution = jobLauncehr.launchJob(params);
-		BatchStatus status = jobExecution.getStatus();
+        // ジョブの開始
+        JobLauncherTestUtils jobLauncehr = getJobLauncherTestUtils();
+        jobLauncehr.setJob(job);
+        JobExecution jobExecution = jobLauncehr.launchJob(params);
+        BatchStatus status = jobExecution.getStatus();
 
-		// 結果確認
-		assertEquals(BatchStatus.FAILED, status);
+        // 結果確認
+        assertEquals(BatchStatus.FAILED, status);
 
-		// ジョブの再実行
-		JobExecution restartedJobExecution = restartJobLauncher.run(job, params);
-		BatchStatus restartedStatus = restartedJobExecution.getStatus();
+        // ジョブの再実行
+        JobExecution restartedJobExecution = restartJobLauncher.run(job, params);
+        BatchStatus restartedStatus = restartedJobExecution.getStatus();
 
-		// 結果確認
-		assertEquals(BatchStatus.COMPLETED, restartedStatus);
-	}
+        // 結果確認
+        assertEquals(BatchStatus.COMPLETED, restartedStatus);
+    }
 
 }
