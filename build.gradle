@@ -55,10 +55,19 @@ dependencies {
 
 
 jar {
-
     // resourcesではなくjavaの中に格納されているリソースをJarに含める
     into('/sample/spring/batch/db') {
         from '/src/main/java/sample/spring/batch/db'
         include '**/*Mapper.xml'
     }
+}
+
+checkstyleTest {
+    // コード規約違反を検知しても、ビルドは成功させる
+    ignoreFailures = true
+}
+
+spotbugsTest {
+    // バグを検知しても、ビルドは成功させる
+    ignoreFailures = true
 }
