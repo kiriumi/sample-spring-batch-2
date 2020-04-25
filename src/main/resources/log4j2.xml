@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration>
+<Configuration status="DEBUG">
+
+    <Properties>
+        <Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %t %C %M %m%n</Property>
+        <Property name="logPath">./log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}" />
+        </Console>
+
+        <RollingFile name="file" fileName="${logPath}/log4j2.log"
+            filePattern="${logPath}/%d{yyyyMM}/log4j2_%d{yyyyMMdd}_%i.log">
+
+            <PatternLayout pattern="${pattern}" />
+            <DefaultRolloverStrategy max="10" />
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+
+        <RollingFile name="file-db"
+            fileName="${logPath}/log4j2-db.log"
+            filePattern="${logPath}/%d{yyyyMM}/log4j2-db_%d{yyyyMMdd}_%i.log">
+            <PatternLayout pattern="${pattern}" />
+
+            <PatternLayout pattern="${pattern}" />
+            <DefaultRolloverStrategy max="10" />
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Root>
+        <!-- <Logger name="org.hibernate.SQL" level="DEBUG"> -->
+        <!-- <AppenderRef ref="console" /> -->
+        <!-- <AppenderRef ref="file" /> -->
+        <!-- </Logger> -->
+        <Logger name="sample.spring.batch.db" level="DEBUG">
+            <AppenderRef ref="file-db" />
+        </Logger>
+    </Loggers>
+</Configuration>
