@@ -17,9 +17,10 @@
                     commit-interval="1" />
             </batch:tasklet>
         </batch:step>
+
     </batch:job>
 
-    <bean id="reader" class="org.mybatis.spring.batch.MyBatisCursorItemReader">
+    <bean id="reader" class="org.mybatis.spring.batch.MyBatisCursorItemReader" scope="step">
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="queryId"
             value="sample.spring.batch.db.custom.dao.Db1Mapper.selectSample1" />
@@ -30,7 +31,8 @@
         </property>
     </bean>
 
-    <bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter">
+<!--     <bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter"> -->
+    <bean id="writer" class="sample.spring.batch.db.RollbackableDbWriter" scope="step">
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="statementId"
             value="sample.spring.batch.db.custom.dao.Db2Mapper.insertSample1" />

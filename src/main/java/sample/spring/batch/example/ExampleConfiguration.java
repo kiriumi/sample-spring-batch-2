@@ -16,42 +16,47 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class ExampleConfiguration {
 
-    @Value("${batch.jdbc.driver}")
-    private String driverClassName;
+	@Value("${batch.jdbc.driver}")
+	private String driverClassName;
 
-    @Value("${batch.jdbc.url}")
-    private String driverUrl;
+	@Value("${batch.jdbc.url}")
+	private String driverUrl;
 
-    @Value("${batch.jdbc.user}")
-    private String driverUsername;
+	@Value("${batch.jdbc.user}")
+	private String driverUsername;
 
-    @Value("${batch.jdbc.password}")
-    private String driverPassword;
+	@Value("${batch.jdbc.password}")
+	private String driverPassword;
 
-    @Autowired
-    @Qualifier("jobRepository")
-    private JobRepository jobRepository;
+	@Autowired
+	@Qualifier("jobRepository")
+	private JobRepository jobRepository;
 
-    @Bean
-    public DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(driverUrl);
-        dataSource.setUsername(driverUsername);
-        dataSource.setPassword(driverPassword);
-        return dataSource;
-    }
+	@Bean
+	public DataSource dataSource() {
 
-    @Bean
-    public SimpleJobLauncher jobLauncher() {
-        SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
-        jobLauncher.setJobRepository(jobRepository);
-        return jobLauncher;
-    }
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(driverUrl);
+		dataSource.setUsername(driverUsername);
+		dataSource.setPassword(driverPassword);
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
-    }
+		return dataSource;
+	}
+
+	@Bean
+	public SimpleJobLauncher jobLauncher() {
+
+		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
+		jobLauncher.setJobRepository(jobRepository);
+
+		return jobLauncher;
+	}
+
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+
+		return new DataSourceTransactionManager(dataSource());
+	}
 
 }

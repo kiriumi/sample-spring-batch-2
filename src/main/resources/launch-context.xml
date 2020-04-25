@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:jdbc="http://www.springframework.org/schema/jdbc"
     xsi:schemaLocation="
@@ -9,20 +10,24 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-    <context:property-placeholder location="classpath:batch.properties" />
+    <context:property-placeholder
+        location="classpath:batch.properties" />
 
-    <context:component-scan base-package="sample.spring.batch" />
+    <context:component-scan
+        base-package="sample.spring.batch" />
 
     <!-- ジョブ起動時にジョブリポジトリを初期化しないよう、コメントアウト -->
-    <!-- <jdbc:initialize-database data-source="dataSource"> -->
-    <!-- <jdbc:script location="${batch.schema.script}" /> -->
-    <!-- </jdbc:initialize-database> -->
+<!--     <jdbc:initialize-database -->
+<!--         data-source="dataSource"> -->
+<!--         <jdbc:script location="${batch.schema.script}" /> -->
+<!--     </jdbc:initialize-database> -->
 
     <batch:job-repository id="jobRepository" />
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:sample/spring/batch/db/**/*.xml" />
+    <property name="dataSource" ref="dataSource" />
+    <property name="mapperLocations"
+        value="classpath*:sample/spring/batch/db/**/*.xml" />
     </bean>
 
 </beans>

@@ -44,7 +44,8 @@
     </bean>
 
     <!-- writer -->
-    <bean id="writer" class="org.springframework.batch.item.file.FlatFileItemWriter"
+<!--     <bean id="writer" class="org.springframework.batch.item.file.FlatFileItemWriter" -->
+    <bean id="writer" class="sample.spring.batch.file.RollbackableFileWriter"
         scope="step">
         <property name="resource" value="file:#{jobParameters[outputFile]}" />
         <property name="lineAggregator">

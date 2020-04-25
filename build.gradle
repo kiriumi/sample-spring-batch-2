@@ -45,7 +45,7 @@ dependencies {
     // リポジトリからライブラリを取り直す設定（changing: true）
     // バージョン番号が同じで、ライブラリが更新される場合有効
     //   ※SNAPSHOT がjar名についている場合、デフォルトで true になる。
-    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2', changing: true
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12', changing: true
 
     testCompile group: 'org.springframework.boot', name: 'spring-boot-test', version: '1.5.14.RELEASE'
     testCompile group: 'org.springframework.batch', name: 'spring-batch-test', version: '3.0.9.RELEASE'
