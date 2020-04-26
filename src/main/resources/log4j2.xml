@@ -27,9 +27,9 @@
         <RollingFile name="file-db"
             fileName="${logPath}/log4j2-db.log"
             filePattern="${logPath}/%d{yyyyMM}/log4j2-db_%d{yyyyMMdd}_%i.log">
-            <PatternLayout pattern="${pattern}" />
 
             <PatternLayout pattern="${pattern}" />
+
             <DefaultRolloverStrategy max="10" />
             <TimeBasedTriggeringPolicy />
         </RollingFile>
