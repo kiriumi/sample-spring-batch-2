@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration>
+
 <Configuration status="OFF">
 
     <Properties>
@@ -39,12 +40,15 @@
         <Root level="ALL">
             <AppenderRef ref="console" />
         </Root>
-        <Logger name="org.hibernate.SQL" level="INFO">
+
+        <Logger name="sample.spring.batch" level="DEBUG">
             <AppenderRef ref="file" />
         </Logger>
+
         <Logger name="sample.spring.batch.db" level="INFO"
             additivity="false">
             <AppenderRef ref="file-db" />
         </Logger>
     </Loggers>
+
 </Configuration>
